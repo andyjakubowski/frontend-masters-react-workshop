@@ -3,19 +3,23 @@ import { useQuery } from 'react-query';
 import Markdown from 'react-markdown';
 import { Link } from 'react-router-dom';
 
-export const Exercise = ({children, markdown, backLink = <Link to="/">← Home</Link>}) => {
+export const Exercise = ({
+  children,
+  markdown,
+  backLink = <Link to="/">← Home</Link>,
+}) => {
   const { status, data } = useQuery(markdown, () => {
-    return fetch(markdown).then(res => res.text())
+    return fetch(markdown).then((res) => res.text());
   });
 
-  return <div className="exercise">
-    <div className="exerciseDescription">
-      {backLink}
-      <Markdown>
-
-      {data || '...'}
-      </Markdown>
+  return (
+    <div className="exercise">
+      {/* <div className="exerciseDescription">
+        {backLink}
+        <Markdown>{data || '...'}</Markdown>
+      </div> */}
+      {/* {backLink} */}
+      {children}
     </div>
-    {children}
-  </div>
-}
+  );
+};
