@@ -6,7 +6,6 @@ const INITIAL_ELAPSED = 0;
 export const timerMachine = createMachine(
   {
     initial: 'idle',
-    // Add initial context
     context: {
       duration: INITIAL_DURATION,
       elapsed: INITIAL_ELAPSED,
@@ -14,9 +13,7 @@ export const timerMachine = createMachine(
     },
     states: {
       idle: {
-        // Reset duration and elapsed on entry
         entry: 'resetTimer',
-
         on: {
           TOGGLE: 'running',
         },
@@ -24,8 +21,6 @@ export const timerMachine = createMachine(
       running: {
         on: {
           TOGGLE: 'paused',
-
-          // On ADD_MINUTE, increment context.duration by 60 seconds
           ADD_MINUTE: {
             actions: 'incrementDuration',
           },
